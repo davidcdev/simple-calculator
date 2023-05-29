@@ -82,15 +82,16 @@ body {
                 -1px -1px 2px #ffffff;
     display: flex;
     justify-content: flex-end;
-    align-items: end;
+    align-items: flex-end;
     margin: 0;
 }
 
 .result span {
     box-sizing: border-box;
-    height: 50%;
-    width: 100%;
-    padding: 0 16px 0 16px;
+    height: 100px;
+    width: 399px;
+    padding: 16px 16px 0 16px;
+    margin: 0 16px;
     overflow: hidden;
     color: var(--black);
     font-size: 60px;
@@ -149,11 +150,11 @@ button.operator:hover {
     cursor: pointer;
 }
 
-#equal {
+#equals {
     background-color: var(--operator-buttons);
 }
 
-#equal:hover {
+#equals:hover {
     background-color: var(--off-orange);
     cursor: pointer;
 }
@@ -167,17 +168,17 @@ button.number:hover {
     cursor: pointer;
 }
 
-button.decimal {
+#decimal {
     background-color: var(--number-buttons);
 }
 
-button.decimal:hover {
+#decimal:hover {
     background-color: var(--off-num-buttons);
     cursor: pointer;
 }
 button.operator,
 button.number,
-button.decimal,
-#equal {
+#decimal,
+#equals {
     color: var(--bg-white);
 }
