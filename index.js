@@ -18,10 +18,10 @@ let isDecimalEntered = false;
 for(let i = 0; i < numbers.length; i++) {
     numbers[i].addEventListener('click', (e) => {
         let getValue = e.target.getAttribute('value');
-        if(isFirstValue === false) {
+        if (isFirstValue === false) {
             getFirstValue(getValue);
         }
-        if(isSecondValue == false) {
+        if (isSecondValue === false) {
             getSecondValue(getValue);
         }
     })
@@ -55,13 +55,13 @@ getSign();
 
 equals.addEventListener('click', () => {
     result.innerHTML = "";
-    if(sign === "+") {
+    if (sign === "+") {
         resultValue = firstValue + secondValue;
-    } else if(sign === "-") {
+    } else if (sign === "-") {
         resultValue = firstValue - secondValue;
-    } else if(sign === "x") {
+    } else if (sign === "x") {
         resultValue = firstValue * secondValue;
-    } else if(sign === "/") {
+    } else if (sign === "/") {
         resultValue = firstValue / secondValue;
     }
     result.innerHTML = resultValue;
@@ -74,7 +74,7 @@ equals.addEventListener('click', () => {
 function checkResultLength() {
     resultValue = JSON.stringify(resultValue);
 
-    if(resultValue.length >= 8) {
+    if (resultValue.length >= 8) {
         resultValue = JSON.parse(resultValue);
         result.innerHTML = resultValue.toFixed(5);
     }
@@ -94,33 +94,32 @@ clear.addEventListener('click', () => {
 
 negative.addEventListener('click', () => {
     result.innerHTML = "";
-    if(firstValue != "") {
+    if (firstValue != "") {
         resultValue = -firstValue;
         firstValue = resultValue;
     }
-    if(firstValue != "" && secondValue != "" && sign != "") {
+    if (firstValue != "" && secondValue != "" && sign != "") {
         resultValue = -resultValue;
     }
 
     result.innerHTML = resultValue;
-
     checkResultLength();
 })
 
 percent.addEventListener('click', () => {
     result.innerHTML = "";
     let opPercentage = firstValue * (secondValue / 100)
-    if(firstValue != "" && sign != "") {
-        if(sign === "+") {
+    if (firstValue != "" && sign != "") {
+        if (sign === "+") {
             resultValue = firstValue + opPercentage;
-        } else if(sign === "-") {
+        } else if (sign === "-") {
             resultValue = firstValue - opPercentage;
-        } else if(sign === "x") {
+        } else if (sign === "x") {
             resultValue = firstValue * opPercentage;
-        } else if(sign === "/") {
+        } else if (sign === "/") {
             resultValue = firstValue / opPercentage;
         }
-    } else if(firstValue != "") {
+    } else if (firstValue != "") {
         resultValue = firstValue / 100;
         firstValue = resultValue;    
     }
@@ -131,11 +130,11 @@ percent.addEventListener('click', () => {
 decimal.addEventListener('click', (e) => {
     point = e.target.getAttribute('value');
     result.innerHTML = "";
-    if(secondValue >= "0") {
+    if (secondValue >= "0") {
         secondValue += point;
         result.innerHTML = secondValue;
         isDecimalEntered = true;
-    } else if(firstValue >= "0") {
+    } else if (firstValue >= "0") {
         firstValue += point;
         result.innerHTML = firstValue;
         isDecimalEntered = true;
