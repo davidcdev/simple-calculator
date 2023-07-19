@@ -15,16 +15,18 @@ let sign = "";
 let resultValue = 0;
 let isDecimalEntered = false;
 
-for(let i = 0; i < numbers.length; i++) {
-    numbers[i].addEventListener('click', (e) => {
-        let getValue = e.target.getAttribute('value');
-        if (isFirstValue === false) {
-            getFirstValue(getValue);
-        }
-        if (isSecondValue === false) {
-            getSecondValue(getValue);
-        }
-    })
+for (const number of numbers) {
+    number.addEventListener('click', handleNumberClick);
+}
+
+function handleNumberClick(event) {
+    const getValue = event.target.getAttribute('value');
+    if (!isFirstValue) {
+        getFirstValue(getValue);
+    }
+    if (!isSecondValue) {
+        getSecondValue(getValue);
+    }
 }
 
 function getFirstValue(el) {
@@ -35,7 +37,7 @@ function getFirstValue(el) {
 }
 
 function getSecondValue(el) {
-    if(firstValue != "" && sign != "") {
+    if (firstValue !== "" && sign !== "") {
         secondValue += el;
         result.innerHTML = secondValue;
         secondValue = +secondValue;
@@ -43,17 +45,22 @@ function getSecondValue(el) {
 }
 
 function getSign() {
-    for(let i = 0; i < signs.length; i++) {
-        signs[i].addEventListener('click', (e) => {
-            sign = e.target.getAttribute('value');
-            isFirstValue = true;
-            console.log(sign)
-        })
+    for (const sign of signs) {
+        sign.addEventListener('click', handleSignClick);
     }
 }
+
+function handleSignClick(event) {
+    sign = event.target.getAttribute('value');
+    isFirstValue = true;
+    console.log(sign);
+}
+
 getSign();
 
-equals.addEventListener('click', () => {
+equals.addEventListener('click', handleEqualsClick);
+
+function handleEqualsClick() {
     result.innerHTML = "";
     if (sign === "+") {
         resultValue = firstValue + secondValue;
@@ -69,7 +76,7 @@ equals.addEventListener('click', () => {
     secondValue = "";
 
     checkResultLength();
-})
+}
 
 function checkResultLength() {
     resultValue = JSON.stringify(resultValue);
@@ -80,8 +87,10 @@ function checkResultLength() {
     }
 }
 
-clear.addEventListener('click', () => {
-    result.innerHTML = 0;
+clear.addEventListener('click', handleClearClick);
+
+function handleClearClick() {
+    result.innerHTML = "0";
 
     firstValue = "";
     isFirstValue = false;
@@ -90,26 +99,30 @@ clear.addEventListener('click', () => {
     sign = "";
     resultValue = 0;
     isDecimalEntered = false;
-})
+}
 
-negative.addEventListener('click', () => {
+negative.addEventListener('click', handleNegativeClick);
+
+function handleNegativeClick() {
     result.innerHTML = "";
-    if (firstValue != "") {
+    if (firstValue !== "") {
         resultValue = -firstValue;
         firstValue = resultValue;
     }
-    if (firstValue != "" && secondValue != "" && sign != "") {
+    if (firstValue !== "" && secondValue !== "" && sign !== "") {
         resultValue = -resultValue;
     }
 
     result.innerHTML = resultValue;
     checkResultLength();
-})
+}
 
-percent.addEventListener('click', () => {
+percent.addEventListener('click', handlePercentClick);
+
+function handlePercentClick() {
     result.innerHTML = "";
-    let opPercentage = firstValue * (secondValue / 100)
-    if (firstValue != "" && sign != "") {
+    const opPercentage = firstValue * (secondValue / 100);
+    if (firstValue !== "" && sign !== "") {
         if (sign === "+") {
             resultValue = firstValue + opPercentage;
         } else if (sign === "-") {
@@ -119,16 +132,18 @@ percent.addEventListener('click', () => {
         } else if (sign === "/") {
             resultValue = firstValue / opPercentage;
         }
-    } else if (firstValue != "") {
+    } else if (firstValue !== "") {
         resultValue = firstValue / 100;
         firstValue = resultValue;    
     }
 
     result.innerHTML = resultValue;
-})
+}
 
-decimal.addEventListener('click', (e) => {
-    point = e.target.getAttribute('value');
+decimal.addEventListener('click', handleDecimalClick);
+
+function handleDecimalClick(event) {
+    const point = event.target.getAttribute('value');
     result.innerHTML = "";
     if (secondValue >= "0") {
         secondValue += point;
@@ -139,4 +154,4 @@ decimal.addEventListener('click', (e) => {
         result.innerHTML = firstValue;
         isDecimalEntered = true;
     }
-})
+}
